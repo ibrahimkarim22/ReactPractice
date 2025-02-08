@@ -1,0 +1,119 @@
+.counter-text {
+  text-align: center;
+  padding: 45px;
+  font-size: 40px;
+  background-color: rgb(48, 0, 0);
+  color: aliceblue;
+}
+
+.title {
+text-align: center;
+  background-color: antiquewhite;
+  padding: 40px
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  background-color: blue;
+}
+
+.inc-but, .dec-but {
+  padding: 20px;
+}
+
+.reset-but {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: blue;
+}
+
+/*////////////////////////////////*/
+
+
+.main {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto;
+  gap: 20px;
+  justify-content: center;
+  padding: 100px;
+  background-color: hotpink;
+}
+
+.steps-text {
+  grid-column: auto;
+  grid-row: 2;
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  font-size: 3vw;
+}
+
+.steps-label {
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+}
+
+.steps-inc, .steps-dec {
+  padding: 1.5vw;
+
+}
+
+.steps-inc {
+  background-color: green;
+}
+
+.steps-dec {
+  background-color: red;
+}
+.reset-steps {
+  background-color: aquamarine;
+}
+
+/*/////////////////////////////////*/
+
+
+.users-main {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+
+}
+
+
+.users-title {
+  display: flex;
+  justify-content: center;
+  padding: 2vh;
+  background-color: aqua;
+  font-size: 2vw;
+}
+
+.refresh {
+  display: flex;
+  padding: 2vh;
+  justify-content: center;
+}
+
+.user-image {
+  display: flex;
+  justify-content: center;
+}
+
+.user-name {
+  display: flex;
+  justify-content: center;
+}
+
+.user-email {
+  display: flex;
+  justify-content: center
+}
+
