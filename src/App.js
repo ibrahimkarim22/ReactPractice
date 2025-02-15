@@ -1,22 +1,28 @@
-import Counter from "./counter"
-import Steps from "./steps"
-import UsersList from "./fetchingApi"
-import Countries from "./fetchCountries";
-import CounterTwo from "./counter2";
-import Dogs from "./dogs";
-import ExpensiveCalculation from "./memo";
+import Counter from "./components/counter"
+import Steps from "./components/steps"
+import UsersList from "./components/fetchingApi"
+import Countries from "./components/fetchCountries";
+import CounterTwo from "./components/counter2";
+import Dogs from "./components/dogs";
+import ExpensiveCalculation from "./components/memo";
+import ToDoList from "./components/todo"
+import CounterThree from "./components/Counter3";
+import Theme from "./components/themeMode";
 
 
 function App() {
   return (
     <>
-    <ExpensiveCalculation />
+    <Theme />
+    {/* <CounterThree /> */}
+    {/* <ToDoList /> */}
+    {/* <ExpensiveCalculation />
     <Dogs />
     <CounterTwo />
     <Counter />
     <Steps />
     <UsersList />
-    <Countries />
+    <Countries /> */}
 
     </>
   );
