@@ -8,12 +8,23 @@ import ExpensiveCalculation from "./components/memo";
 import ToDoList from "./components/todo"
 import CounterThree from "./components/Counter3";
 import Theme from "./components/themeMode";
-
+import FetchApiTwo from "./components/fetchingApiTwo";
+import SearchableList from "./components/searchableList";
+import Local from "./components/localStorage";
+import UserForm from "./components/form";
+import ToDoTwo from "./components/todoTwo";
+import Timer from "./components/timer";
 
 function App() {
-  return (
+return (
     <>
-    <Theme />
+    <Timer />
+    {/* <ToDoTwo /> */}
+    {/* <UserForm /> */}
+    {/* <Local /> */}
+    {/* <SearchableList /> */}
+    {/* <FetchApiTwo /> */}
+    {/* <Theme /> */}
     {/* <CounterThree /> */}
     {/* <ToDoList /> */}
     {/* <ExpensiveCalculation />
