@@ -14,11 +14,20 @@ import Local from "./components/localStorage";
 import UserForm from "./components/form";
 import ToDoTwo from "./components/todoTwo";
 import Timer from "./components/timer";
+import CountLettersAndWords from "./components/countWordsAndLetters";
+import Voting from "./components/voting";
+import TemperatureConverter from "./components/TemperatureConverter";
+import ColorGenerator from "./components/colorGenerator";
+
 
 function App() {
 return (
     <>
-    <Timer />
+    <ColorGenerator />
+    {/* <TemperatureConverter /> */}
+    {/* <Voting /> */}
+    {/* <CountLettersAndWords /> */}
+    {/* <Timer /> */}
     {/* <ToDoTwo /> */}
     {/* <UserForm /> */}
     {/* <Local /> */}
