@@ -4,14 +4,16 @@ const ToDoTwo = () => {
     const [tasks, setTasks] = useState(() => {
         try {
             const storedTasks = JSON.parse(localStorage.getItem("TASKS"));
-            return Array.isArray(storedTasks) ? storedTasks : []; 
+            return Array.isArray(storedTasks) ? storedTasks : [];
         } catch (error) {
             console.error("Error parsing tasks from localStorage:", error);
-            return []; 
+            return [];
         }
     });
 
     const [newTask, setNewTask] = useState("");
+    const [editIndex, setEditIndex] = useState(null);
+    const [editedText, setEditedText] = useState(""); 
 
     useEffect(() => {
         localStorage.setItem("TASKS", JSON.stringify(tasks));
@@ -20,10 +22,11 @@ const ToDoTwo = () => {
 
     const addTask = () => {
         if (newTask.trim() === "") return;
-        setTasks([...tasks, { text: newTask, completed: false }]); 
-        setNewTask(""); 
+        setTasks([...tasks, { text: newTask, completed: false }]);
+        setNewTask("");
     };
 
+ 
     const toggleCompleteTask = (index) => {
         setTasks(
             tasks.map((task, i) =>
@@ -32,10 +35,29 @@ const ToDoTwo = () => {
         );
     };
 
+
     const removeTask = (index) => {
         setTasks(tasks.filter((_, i) => i !== index));
     };
 
+
+    const startEditing = (index) => {
+        setEditIndex(index);
+        setEditedText(tasks[index].text);
+    };
+
+
+    const saveTask = (index) => {
+        if (editedText.trim() === "") return;
+        setTasks(
+            tasks.map((task, i) =>
+                i === index ? { ...task, text: editedText } : task
+            )
+        );
+        setEditIndex(null); 
+    };
+
+   
     const clearAllTasks = () => {
         setTasks([]);
         localStorage.removeItem("TASKS");
@@ -43,6 +65,7 @@ const ToDoTwo = () => {
 
     return (
         <>
+            <h2>To-Do List</h2>
             <input
                 type="text"
                 value={newTask}
@@ -61,7 +84,23 @@ const ToDoTwo = () => {
                                 checked={task.completed}
                                 onChange={() => toggleCompleteTask(index)}
                             />
-                            {task.text}
+
+                            {editIndex === index ? (
+                                <input
+                                    type="text"
+                                    value={editedText}
+                                    onChange={(e) => setEditedText(e.target.value)}
+                                />
+                            ) : (
+                                <span>{task.text}</span>
+                            )}
+
+                            {editIndex === index ? (
+                                <button onClick={() => saveTask(index)}>Save</button>
+                            ) : (
+                                <button onClick={() => startEditing(index)}>Edit</button>
+                            )}
+
                             <button onClick={() => removeTask(index)}>Remove</button>
                         </li>
                     ))

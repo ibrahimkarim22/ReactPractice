@@ -18,12 +18,14 @@ import CountLettersAndWords from "./components/countWordsAndLetters";
 import Voting from "./components/voting";
 import TemperatureConverter from "./components/TemperatureConverter";
 import ColorGenerator from "./components/colorGenerator";
+import Debounced from "./components/debounced";
 
 
 function App() {
 return (
     <>
-    <ColorGenerator />
+    <Debounced />
+    {/* <ColorGenerator /> */}
     {/* <TemperatureConverter /> */}
     {/* <Voting /> */}
     {/* <CountLettersAndWords /> */}
