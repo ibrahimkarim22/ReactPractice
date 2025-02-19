@@ -19,12 +19,22 @@ import Voting from "./components/voting";
 import TemperatureConverter from "./components/TemperatureConverter";
 import ColorGenerator from "./components/colorGenerator";
 import Debounced from "./components/debounced";
+import SearchableListTwo from "./components/searchableListTwo";
+import CounterFour from "./components/counter4";
+import BackgroundColorToggle from "./components/backgroundColorToggle";
+import ToDoThree from "./components/todoThree";
+import CharacterCounter from "./components/characterCounter";
 
 
 function App() {
 return (
     <>
-    <Debounced />
+    <CharacterCounter />
+    {/* <ToDoThree /> */}
+    {/* <BackgroundColorToggle /> */}
+    {/* <CounterFour /> */}
+    {/* <SearchableListTwo /> */}
+    {/* <Debounced /> */}
     {/* <ColorGenerator /> */}
     {/* <TemperatureConverter /> */}
     {/* <Voting /> */}
