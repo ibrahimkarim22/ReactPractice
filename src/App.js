@@ -24,12 +24,25 @@ import CounterFour from "./components/counter4";
 import BackgroundColorToggle from "./components/backgroundColorToggle";
 import ToDoThree from "./components/todoThree";
 import CharacterCounter from "./components/characterCounter";
+import PasswordChecker from "./components/passwordChecker";
+import TimerTwo from "./components/timerTwo";
+import TemperatureConverterTwo from "./components/TemperatureConverterTwo";
+import RandomPokemon from "./components/randomPokemon";
+import RandomCountry from "./components/randomCountry";
+import RandomRecipe from "./components/randomRecipe";
+
 
 
 function App() {
 return (
     <>
-    <CharacterCounter />
+    <RandomRecipe />
+    {/* <RandomCountry /> */}
+    {/* <RandomPokemon /> */}
+    {/* <TemperatureConverterTwo /> */}
+    {/* <TimerTwo /> */}
+    {/* <PasswordChecker /> */}
+    {/* <CharacterCounter /> */}
     {/* <ToDoThree /> */}
     {/* <BackgroundColorToggle /> */}
     {/* <CounterFour /> */}
