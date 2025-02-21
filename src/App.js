@@ -31,13 +31,15 @@ import RandomPokemon from "./components/randomPokemon";
 import RandomCountry from "./components/randomCountry";
 import RandomRecipe from "./components/randomRecipe";
 import QuizApi from "./components/quizApi";
+import CurrencyConverter from "./components/currencyConverter";
 
 
 
 function App() {
 return (
     <>
-    <QuizApi />
+    <CurrencyConverter />
+    {/* <QuizApi /> */}
     {/* <RandomRecipe /> */}
     {/* <RandomCountry /> */}
     {/* <RandomPokemon /> */}
