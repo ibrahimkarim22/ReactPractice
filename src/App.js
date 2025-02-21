@@ -30,13 +30,15 @@ import TemperatureConverterTwo from "./components/TemperatureConverterTwo";
 import RandomPokemon from "./components/randomPokemon";
 import RandomCountry from "./components/randomCountry";
 import RandomRecipe from "./components/randomRecipe";
+import QuizApi from "./components/quizApi";
 
 
 
 function App() {
 return (
     <>
-    <RandomRecipe />
+    <QuizApi />
+    {/* <RandomRecipe /> */}
     {/* <RandomCountry /> */}
     {/* <RandomPokemon /> */}
     {/* <TemperatureConverterTwo /> */}
