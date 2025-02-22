@@ -32,13 +32,15 @@ import RandomCountry from "./components/randomCountry";
 import RandomRecipe from "./components/randomRecipe";
 import QuizApi from "./components/quizApi";
 import CurrencyConverter from "./components/currencyConverter";
+import WeatherByCity from "./components/weatherByCity";
 
 
 
 function App() {
 return (
     <>
-    <CurrencyConverter />
+    <WeatherByCity />
+    {/* <CurrencyConverter /> */}
     {/* <QuizApi /> */}
     {/* <RandomRecipe /> */}
     {/* <RandomCountry /> */}
