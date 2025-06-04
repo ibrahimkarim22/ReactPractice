@@ -35,14 +35,15 @@ import CurrencyConverter from "./components/currencyConverter";
 import WeatherByCity from "./components/weatherByCity";
 import Counter5 from "./components/counter5";
 import Counter6 from "./components/counter6"
-
+import CounterSeven from "./components/counter7";
 
 
 function App() {
 return (
     <>
-    <Counter6 />
-    <Counter5 />
+   <CounterSeven />
+    {/* <Counter6 /> */}
+    {/* <Counter5 /> */}
     {/* <WeatherByCity /> */}
     {/* <CurrencyConverter /> */}
     {/* <QuizApi /> */}
