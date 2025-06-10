@@ -38,11 +38,13 @@ import Counter6 from "./components/counter6";
 import CounterSeven from "./components/counter7";
 import Counter8 from "./counter8";
 import Dogs2 from "./components/dogs2";
+import TimerThree from "./components/timer3";
 
 function App() {
   return (
     <>
-      <Dogs2 />
+      {/* <TimerThree /> */}
+      {/* <Dogs2 /> */}
       {/* <Counter8 /> */}
       {/* <CounterSeven /> */}
       {/* <Counter6 /> */}
