@@ -39,10 +39,12 @@ import CounterSeven from "./components/counter7";
 import Counter8 from "./counter8";
 import Dogs2 from "./components/dogs2";
 import TimerThree from "./components/timer3";
+import PeopleList from "./components/fetchingPeopleApi";
 
 function App() {
   return (
     <>
+    {/* <PeopleList /> */}
       {/* <TimerThree /> */}
       {/* <Dogs2 /> */}
       {/* <Counter8 /> */}
