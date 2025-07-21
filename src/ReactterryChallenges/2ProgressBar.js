@@ -14,20 +14,56 @@ You can use styled-components library to achieve the desired result
 
 import styled from 'styled-components'
 
-
-const ProgressBar = ({ percent = 12 }) => {
-
-const Bar = styled.div`
-width: ${percent}%;
+const Wrapper = styled.div`
+background-color: lightgrey;
+width: 100%;
 height: 20px;
 border-radius: 5px;
+`
+const Bar = styled.div`
+background-color: green;
+height: 100%;
+width: ${props => props.percent}%;
+border-radius: 5px;
 `;
+const ProgressBar = ({ percent = 12 }) => {
+ const percentage = Math.max(0, Math.min(percent, 100));
   return (
-    <div data-testid="wrapper">
-      <div data-testid="progress" 
-      />
-    </div>
+    <Wrapper data-testid="wrapper">
+      <Bar data-testid="progress" percent={percentage} />
+    </Wrapper>
   );
 };
 
 export default ProgressBar;
+
+
+/* reacterry official solution */
+/**import React from 'react';
+import styled from 'styled-components'
+
+const ProgressBar = ({ percent = 12 }) => {
+  const cappedPercent = Math.min(Math.max(0, percent), 100);
+
+  return (
+    <Wrapper data-testid="wrapper">
+      <FilledBar data-testid="progress" percent={cappedPercent} />
+    </Wrapper>
+  );
+};
+
+export default ProgressBar;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+  background-color: lightgrey;
+`;
+
+const FilledBar = styled.div`
+  height: 100%;
+  background-color: green;
+  border-radius: 5px;
+  width: ${props => props.percent}%;
+`; */
