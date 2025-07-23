@@ -23,45 +23,45 @@ Do not let users submit empty messages.
 
 /* my solution */
 
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const MessageFeed = () => {
-  const [messages, setMessages] = useState(["The minute she landed she understood the reason this was a fly-over state.", "She thought there'd be sufficient time if she hid her watch."]);
-  const [inputValue, setInputValue] = useState('');
+  const [messages, setMessages] = useState([
+    'The minute she landed she understood the reason this was a fly-over state.',
+    "She thought there'd be sufficient time if she hid her watch.",
+  ]);
+  const inputRef = useRef(null);
 
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  useEffect(() => {
-    const sendMessage = (e) => {
-      if (e.key === 'Enter' && e.shiftkey && inputValue.trim()) {
-        setMessages(m => [...m, inputValue]);
-        setInputValue('');
+  const sendMessage = (e) => {
+    if (e.key === 'Enter' && e.shiftKey) {
+      e.preventDefault();
+      const value = inputRef.current.value.trim();
+      if (value) {
+        setMessages([...messages, value]);
+        inputRef.current.value = '';
       }
     }
+  }
+
+  useEffect(() => {
     document.addEventListener('keydown', sendMessage);
-    
     return () => {
       document.removeEventListener('keydown', sendMessage);
-    }
-
-
-  }, [inputValue])
-
-  return (
+    };
+  }, [messages]);
+   return (
     <MessageFeedContainer>
       <MessageContainer data-testid="message-container">
         {messages.map((message, index) => (
-          <Message data-testid="message" key={index}>{message}</Message>
+          <Message data-testid="message" key={index}>
+            {message}
+          </Message>
         ))}
       </MessageContainer>
       <MessageInput
         data-testid="message-input"
         type="text"
-        value={inputValue}
-        onChange={handleChange}
+        ref={inputRef}
         placeholder="Type your message and press Shift + Enter to send"
       />
     </MessageFeedContainer>
@@ -70,38 +70,33 @@ const MessageFeed = () => {
 
 export default MessageFeed;
 
-const MessageFeedContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-`;
+/**reacterry official solution */
 
-const MessageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  max-height: 80vh;
-  margin-bottom: 10px;
-`;
+/**import styled from 'styled-components';
 
-const Message = styled.div`
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-`;
+const MessageFeed = () => {
+  const [messages, setMessages] = useState(["The minute she landed she understood the reason this was a fly-over state.", "She thought there'd be sufficient time if she hid her watch."]);
+  const [inputValue, setInputValue] = useState('');
 
-const MessageInput = styled.input`
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  outline: none;
-  &:focus {
-    border-color: #999;
-  }
-`;
+  const handleKeyDown = (e) => {
+    if (e.shiftKey && e.key === 'Enter') {
+      e.preventDefault();
+      if (inputValue.length > 0) {
+        setMessages([...messages, inputValue]);
+        setInputValue('');
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [messages, inputValue]);
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+ */
