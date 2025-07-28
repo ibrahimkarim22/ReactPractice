@@ -53,3 +53,62 @@ const App = () => {
 };
 
 export default App;
+
+/**import { useState } from 'react';
+
+const App = () => {
+
+ const [ temp, setTemp ] = useState(0);
+
+const celFah = (temp) => ((temp * 9 / 5) + 32).toFixed(2);
+const celkel = (temp) => (temp + 273.15).toFixed(2);
+
+  return (
+    <div>
+      <form>
+        <input
+          data-testid='input-id'
+          name="input"
+          type="number"
+          value={temp}
+          onChange={(e) => setTemp(parseFloat(e.target.value))}
+        />
+        <label for="input">°C</label>
+      </form>
+      <p data-testid='output'>
+         {temp}°C is {celFah(temp)}°F and {celkel(temp)}K
+      </p>
+    </div>
+  );
+};
+
+export default App;import { useState } from 'react';
+
+const App = () => {
+
+ const [ temp, setTemp ] = useState(0);
+
+const celFah = (temp) => ((temp * 9 / 5) + 32).toFixed(2);
+const celkel = (temp) => (temp + 273.15).toFixed(2);
+
+  return (
+    <div>
+      <form>
+        <input
+          data-testid='input-id'
+          name="input"
+          type="number"
+          value={temp}
+          onChange={(e) => setTemp(parseFloat(e.target.value))}
+        />
+        <label for="input">°C</label>
+      </form>
+      <p data-testid='output'>
+         {temp}°C is {celFah(temp)}°F and {celkel(temp)}K
+      </p>
+    </div>
+  );
+};
+
+export default App; */
+
