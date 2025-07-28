@@ -31,6 +31,38 @@ import { useState } from 'react';
 
 const App = () => {
 
+ const [ temp, setTemp ] = useState(0);
+
+const celFah = (temp) => Math.round((temp * 9/5 + 32) * 100) / 100; 
+const celkel = (temp) => (temp + 273.15).toFixed(2);
+
+  return (
+    <div>
+      <form>
+        <input
+          data-testid='input-id'
+          name="input"
+          type="number"
+          value={temp}
+          onChange={(e) => setTemp(parseFloat(e.target.value))}
+        />
+        <label for="input">°C</label>
+      </form>
+      <p data-testid='output'>
+         {temp}°C is {celFah(temp)}°F and {celkel(temp)}K.
+      </p>
+    </div>
+  );
+};
+
+export default App;
+
+/*
+
+import { useState } from 'react';
+
+const App = () => {
+
  const [ celcius, setCelcius ] = useState(0);
 
   return (
@@ -53,6 +85,8 @@ const App = () => {
 };
 
 export default App;
+*/
+
 
 /**import { useState } from 'react';
 
@@ -112,3 +146,49 @@ const celkel = (temp) => (temp + 273.15).toFixed(2);
 
 export default App; */
 
+/*reacterry class based solution*/
+/*
+import React, { Component } from 'react';
+
+class App extends Component {
+  state = {
+    temperature: 0,
+  };
+
+  celsiusToFahrenheit = (temp) => {
+    return Math.round((temp * 9/5 + 32) * 100) / 100;
+  };
+
+  celsiusToKelvin = (temp) => {
+    return Math.round((temp + 273.15) * 100) / 100;
+  };
+
+  handleChange = (e) => {
+    this.setState({ temperature: parseFloat(e.target.value) });
+  };
+
+  render() {
+    const { temperature } = this.state;
+    return (
+      <div>
+        <form>
+	  <input
+	    data-testid='input-id'
+	    name="input" 
+	    type="number"
+	    value={temperature}
+	    onChange={this.handleChange}
+	  />
+  	  <label for="input">°C</label>
+	</form>
+        <p data-testid='output'>
+          {temperature}°C is {this.celsiusToFahrenheit(temperature)}°F and {this.celsiusToKelvin(temperature)}K.
+        </p>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+*/
