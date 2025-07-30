@@ -21,30 +21,31 @@ If the users click on the green box, they finished the game successfully and you
 
   /** my solution */
 
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
 
 const Main = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-  background-color: gold;
-`;
+display: flex;
+width: 100vw;
+height: 100vh;
+justify-content: center;
+align-items: center;
+gap: 50px;
+background-color: gold;
+`
 const Butt = styled.button`
-  background-color: green;
-  font-size: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  &:hover {
-    background-color: red;
-    opacity: 0.3;
-  }
-`;
+background-color: green;
+font-size: 22px;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+&:hover {
+  background-color: red;
+  opacity: 0.3;
+}
+`
 
 const RedBox = styled.div`
   width: 100px;
@@ -55,74 +56,107 @@ const RedBox = styled.div`
   display: flex;
   cursor: pointer;
   justify-content: center;
-  align-items: center;
-`;
+align-items: center;
+`
 
 const ReactionTime = styled.p`
   font-size: 22px;
   color: blue;
   display: flex;
   justify-content: center;
-  align-items: center;
-`;
+align-items: center;
+`
 
 const ClickedRed = styled.p`
   font-size: 22px;
   color: red;
   display: flex;
   justify-content: center;
-  align-items: center;
-`;
+align-items: center;
+`
 const GreenBox = styled.div`
   background-color: green;
-  width: 300px;
+  width: 200px;
   height: 100px;
   display: flex;
   border-radius: 4px;
-`;
+  cursor: pointer;
+`
 
 const ReactionTest = () => {
-    const [isGameStarted, setIsGameStarted] = useState(false);
-    const [isRedBox, setIsRedBox] = useState(false);
-    const [isGreenBox, setIsGreenBox] = useState(false);
-    const [isGreenBoxTimer, setIsGreenBoxTimer] = useState(false);
 
-    const handleStartGame = () => {
-        setIsGameStarted(true);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [redClicked, setRedClicked] = useState(false);
+  const [greenClicked, setGreenClicked] = useState(false);
+  const [showGreen, setShowGreen] = useState(false);
 
-        const countDown = Math.floor(Math.random() * 6 + 1) * 1000;
+  const handleStartGame = () => {
+    setGameStarted(true)
+    setGreenClicked(false);
+    setRedClicked(false);
 
-        const boxx = () => setTimeout(() => setIsGreenBoxTimer(true), countDown);
+    const countDown = Math.floor((Math.random() * 6) + 1) * 1000;
 
-        return () => {
-            clearTimeout(boxx);
-            setIsGreenBoxTimer(false);
-        };
-    };
+    const boxTimeout = setTimeout(() => {
 
-    const handleRedClick = () => {
-        setIsRedBox(true);
-        setIsGameStarted(false);
-    };
+      setShowGreen(true)
+      
 
-    const handleGreenClick = () => {
-        setIsGreenBox(true);
-        setIsGameStarted(false);
-    };
+    }, countDown)
+    return () => {
+      clearTimeout(boxTimeout)
+    }
+  }
 
-    return (
-        <>
-            <Main>
-                {!isGameStarted && <Butt onClick={handleStartGame}>Start Game!</Butt>}
-                {isGameStarted && !isGreenBox && !isRedBox && (
-                    <RedBox onClick={handleRedClick} />
-                )}
-                {isGreenBox && <GreenBox />}
-                {isGreenBox && <ReactionTime>Your Reaction speed: ms! </ReactionTime>}
-                {isRedBox && <ClickedRed>You Clicked Too Early!</ClickedRed>}
-            </Main>
-        </>
-    );
-};
+  const handleRedClick = () => {
+    setGameStarted(false);
+    setRedClicked(true);
+    showGreen(false);
+  }
+
+  const handleGreenClick = () => {
+    setGameStarted(false);
+    setGreenClicked(true);
+  }
+
+  // useEffect(() => {
+  //   setGreenClicked(false);
+  //   setRedClicked(false);
+
+  // }, [handleStartGame])
+
+
+  return (
+    <>
+      <Main>
+
+        {!gameStarted &&
+
+          <Butt onClick={handleStartGame}>Start Game!</Butt>
+        }
+
+        {gameStarted &&
+          <RedBox onClick={handleRedClick} />
+        }
+
+        {showGreen && !greenClicked &&
+        
+        <GreenBox id='greenbox' onClick={handleGreenClick} />
+        }
+
+        {greenClicked &&
+
+          <ReactionTime>Your Reaction speed: ms! </ReactionTime>
+        }
+
+        {redClicked &&
+          <ClickedRed>You Clicked Too Early!</ClickedRed>
+        }
+
+      </Main>
+    </>
+  )
+
+}
 
 export default ReactionTest;
