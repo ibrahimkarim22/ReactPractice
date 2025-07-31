@@ -20,7 +20,6 @@ If the users click on the green box, they finished the game successfully and you
   took them to react in milliseconds.*/
 
   /** my solution */
-
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
@@ -76,7 +75,7 @@ align-items: center;
 `
 const GreenBox = styled.div`
   background-color: green;
-  width: 200px;
+  width: 100px;
   height: 100px;
   display: flex;
   border-radius: 4px;
@@ -89,42 +88,47 @@ const ReactionTest = () => {
   const [redClicked, setRedClicked] = useState(false);
   const [greenClicked, setGreenClicked] = useState(false);
   const [showGreen, setShowGreen] = useState(false);
+  const [greenTime, setGreenTime] = useState(null);
+  const [clickTime, setClickTime] = useState(null);
 
   const handleStartGame = () => {
     setGameStarted(true)
     setGreenClicked(false);
     setRedClicked(false);
-
-    const countDown = Math.floor((Math.random() * 6) + 1) * 1000;
-
-    const boxTimeout = setTimeout(() => {
-
-      setShowGreen(true)
-      
-
-    }, countDown)
-    return () => {
-      clearTimeout(boxTimeout)
-    }
+    setShowGreen(false)
   }
+
+
+  useEffect(() => {
+    if (gameStarted && !redClicked) {
+      const countDown = Math.floor((Math.random() * 6) + 1) * 1000;
+      const boxTimeout = setTimeout(() => {
+        setShowGreen(true);
+        setGreenTime(Date.now());
+        console.log(greenTime)
+      }, countDown)
+      return () => {
+        clearTimeout(boxTimeout)
+      }
+    }
+  }, [gameStarted, redClicked])
+
+
 
   const handleRedClick = () => {
     setGameStarted(false);
     setRedClicked(true);
-    showGreen(false);
+    setShowGreen(false);
   }
 
   const handleGreenClick = () => {
     setGameStarted(false);
     setGreenClicked(true);
+    setShowGreen(false);
+    setClickTime(Date.now());
   }
 
-  // useEffect(() => {
-  //   setGreenClicked(false);
-  //   setRedClicked(false);
-
-  // }, [handleStartGame])
-
+  const reactionTime = clickTime - greenTime;
 
   return (
     <>
@@ -135,18 +139,18 @@ const ReactionTest = () => {
           <Butt onClick={handleStartGame}>Start Game!</Butt>
         }
 
-        {gameStarted &&
+        {gameStarted && !showGreen &&
           <RedBox onClick={handleRedClick} />
         }
 
-        {showGreen && !greenClicked &&
-        
-        <GreenBox id='greenbox' onClick={handleGreenClick} />
+        {showGreen &&
+
+          <GreenBox id='greenbox' onClick={handleGreenClick} />
         }
 
         {greenClicked &&
 
-          <ReactionTime>Your Reaction speed: ms! </ReactionTime>
+          <ReactionTime>Your Reaction speed: {reactionTime} ms! </ReactionTime>
         }
 
         {redClicked &&
