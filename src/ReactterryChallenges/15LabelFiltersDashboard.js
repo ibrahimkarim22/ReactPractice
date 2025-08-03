@@ -54,8 +54,8 @@ const [labelClicked, setLabelClicked] = useState(false);
 
 
 
-  const handleLabelClick = () => {
-    return setLabelClicked(true);
+  const handleLabelClick = (e) => {
+    setLabelClicked(true);
   }
 
   return (
@@ -66,7 +66,7 @@ const [labelClicked, setLabelClicked] = useState(false);
             data-testid='label-id'
             className={labelClicked ? 'label-clicked' : 'label'}
             key={animalClass}
-            onClick={handleLabelClick}
+            onClick={handleLabelClick[1]}
           >
             {animalClass}
           </div>
@@ -138,7 +138,6 @@ const Wrapper = styled.div`
     }
   }
 `;
-
 
 
 
