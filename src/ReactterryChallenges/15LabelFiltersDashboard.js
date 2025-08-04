@@ -47,15 +47,23 @@ const animalData = [
 
 const LabelFilter = () => {
 
-const [labelClicked, setLabelClicked] = useState(false);
+const [labelClicked, setLabelClicked] = useState([]);
 
 
   const animalClasses = Array.from(new Set(animalData.map((animal) => animal.class)));
+  
+  
 
 
-
-  const handleLabelClick = (e) => {
-    setLabelClicked(true);
+  const handleLabelClick = (animalClass) => {
+      setLabelClicked((prev) => {
+        if (prev.includes(animalClass)) {
+          return prev.filter((c) => c !== prev.animalClass)
+        } else {
+          return [...prev, animalClass]
+        }
+      })
+      console.log(labelClicked)
   }
 
   return (
@@ -64,9 +72,9 @@ const [labelClicked, setLabelClicked] = useState(false);
         {animalClasses.map((animalClass) => (
           <div 
             data-testid='label-id'
-            className={labelClicked ? 'label-clicked' : 'label'}
+            className={animalClass === labelClicked.animalClass ? 'label-clicked' : 'label'}
             key={animalClass}
-            onClick={handleLabelClick[1]}
+            onClick={() => handleLabelClick(animalClass)}
           >
             {animalClass}
           </div>
@@ -138,10 +146,3 @@ const Wrapper = styled.div`
     }
   }
 `;
-
-
-
-
-
-/*reacterry's solution*/
-
