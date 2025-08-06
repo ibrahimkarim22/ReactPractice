@@ -72,7 +72,7 @@ const [labelClicked, setLabelClicked] = useState([]);
         {animalClasses.map((animalClass) => (
           <div 
             data-testid='label-id'
-            className={animalClass === labelClicked.animalClass ? 'label-clicked' : 'label'}
+            className={animalClass.includes(labelClicked) ? 'label-clicked' : 'label'}
             key={animalClass}
             onClick={() => handleLabelClick(animalClass)}
           >
