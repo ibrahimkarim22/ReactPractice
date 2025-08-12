@@ -19,9 +19,25 @@ Every time the value of the data is updated, the hook should update the
 
  /*my solution*/
 
- export const useLocalStorage = (key, initialValue) => {
-    // Write the body of the hook here
-  return {};
+import { useState, useEffect } from 'react';
+
+export const useLocalStorage = (key, initialValue) => {
+    
+    const [ value, setValue ] = useState(() => {
+      const storedValue = localStorage.getItem(key);
+      try {
+      return storedValue !== null ? JSON.parse(storedValue) : initialValue;
+      } catch {
+       return initialValue
+      }
+    });
+
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [value])
+
+  return {value, setValue};
 };
 
 const App = () => {
