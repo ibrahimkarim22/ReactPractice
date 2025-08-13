@@ -26,16 +26,16 @@ export const useLocalStorage = (key, initialValue) => {
     const [ value, setValue ] = useState(() => {
       const storedValue = localStorage.getItem(key);
       try {
-      return storedValue !== null ? JSON.parse(storedValue) : initialValue;
+      return storedValue !== null ? storedValue : initialValue;
       } catch {
-       return initialValue
+       return console.error('ERROR: ', Error)
       }
     });
 
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [value])
+    localStorage.setItem(key, value);
+  }, [key, value])
 
   return {value, setValue};
 };
@@ -55,3 +55,39 @@ const App = () => {
 };
 
 export default App;
+
+
+/*reacterry's solution*/
+
+/**
+ * import { useState, useEffect } from 'react';
+
+export const useLocalStorage = (key, initialValue) => {
+  const [value, setValue] = useState(() => {
+    const storedValue = localStorage.getItem(key);
+    return storedValue !== null ? storedValue : initialValue;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [value, key]);
+
+  return {value, setValue};
+};
+
+const App = () => {
+  const {value, setValue} = useLocalStorage('inputValue', '');
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={value} onChange={handleChange} />
+    </div>
+  );
+};
+
+export default App;
+ */
