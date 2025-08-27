@@ -53,9 +53,7 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
-
 
 /*reacterry's solution*/
 

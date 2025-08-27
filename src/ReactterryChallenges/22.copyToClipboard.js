@@ -17,7 +17,7 @@ We have already provided you with a styled component Button, feel free to
 /**my solution */
 
 import styled from "styled-components";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
 
